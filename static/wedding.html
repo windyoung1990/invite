@@ -21,6 +21,7 @@
 	<!-- no cache -->
 	<link rel="stylesheet" href="https://staticimg.7192.com/wp_static/wp/css/main.css?t=0711">
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 	<style type="text/css">
 		.loading {
 			background: none !important;
@@ -256,7 +257,39 @@
 	}).then((res) => {
 		// console.log('12')
 		console.log(res)
-		scene.wxconfig = {"appId":"wx2f74425be8fcfd89","nonceStr":"AmfBJc7GJZCadhF7","timestamp":1609489551,"url":"http:\/\/te8te.cn\/invite\/wedding.html","signature":"e91934318fcd7349d0c60b42d03577cd7915bd82","rawString":"jsapi_ticket=HoagFKDcsGMVCIY2vOjf9j67WIIaBRQWde9uYfaLpZMTh5zlx0ibPTazp7vy6DSh_F6_675dOo3hxrun1Ot5sw&noncestr=AmfBJc7GJZCadhF7&timestamp=1609489551&url=http:\/\/te8te.cn\/invite\/wedding.html"};
+		// scene.wxconfig = {"appId":"wx2f74425be8fcfd89","nonceStr":"AmfBJc7GJZCadhF7","timestamp":1609489551,"url":"http:\/\/te8te.cn\/invite\/wedding.html","signature":"e91934318fcd7349d0c60b42d03577cd7915bd82","rawString":"jsapi_ticket=HoagFKDcsGMVCIY2vOjf9j67WIIaBRQWde9uYfaLpZMTh5zlx0ibPTazp7vy6DSh_F6_675dOo3hxrun1Ot5sw&noncestr=AmfBJc7GJZCadhF7&timestamp=1609489551&url=http:\/\/te8te.cn\/invite\/wedding.html"};
+		wx.config({
+			appId: res.appId,
+			timestamp: res.timestamp,
+			nonceStr: res.nonceStr,
+			signature: res.signature,
+			jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+		});
+		wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+			let title = '我们结婚啦！';
+			let des = '2021.2.7日，豪庭大酒店不见不散！';
+			let link = window.location.href;
+			let imgUrl = 'http://te8te.cn/invite/share.jpg'
+			wx.updateAppMessageShareData({ 
+				title: title, // 分享标题
+				desc: desc, // 分享描述
+				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: imgUrl, // 分享图标
+				success: function () {
+				// 设置成功
+				}
+			})
+			wx.updateTimelineShareData({ 
+				title: title, // 分享标题
+				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: imgUrl, // 分享图标
+				success: function () {
+				// 设置成功
+				}
+			})
+		}); 
+
+
 	})
 	</script>
 		<script type="text/javascript">
