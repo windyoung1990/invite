@@ -262,14 +262,14 @@
 		// 	"url":"http:\/\/te8te.cn\/invite\/wedding.html",
 		// 	"signature":"e91934318fcd7349d0c60b42d03577cd7915bd82",
 		// 	"rawString":"jsapi_ticket=HoagFKDcsGMVCIY2vOjf9j67WIIaBRQWde9uYfaLpZMTh5zlx0ibPTazp7vy6DSh_F6_675dOo3hxrun1Ot5sw&noncestr=AmfBJc7GJZCadhF7&timestamp=1609489551&url=http:\/\/te8te.cn\/invite\/wedding.html"};
-		scene.wxconfig = {
-			"appId": data.appId,
-			"nonceStr": data.nonceStr,
-			"timestamp":data.timestamp,
-			"url": window.location.href,
-			"signature": data.signature,
-			"rawString":"jsapi_ticket="+data.jsapi_ticket+"&noncestr="+data.nonceStr+"&timestamp="+data.timestamp+"&url=http:\/\/te8te.cn\/invite\/wedding.html"
-		};
+		// scene.wxconfig = {
+		// 	"appId": data.appId,
+		// 	"nonceStr": data.nonceStr,
+		// 	"timestamp":data.timestamp,
+		// 	"url": window.location.href,
+		// 	"signature": data.signature,
+		// 	"rawString":"jsapi_ticket="+data.jsapi_ticket+"&noncestr="+data.nonceStr+"&timestamp="+data.timestamp+"&url=http:\/\/te8te.cn\/invite\/wedding.html"
+		// };
 		// alert(JSON.stringify(data))
 		wx.config({
 			appId: data.appId,
@@ -277,7 +277,7 @@
 			debug: true,
 			nonceStr: data.nonceStr,
 			signature: data.signature,
-			jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+			jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline']
 		});
 		wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
 			alert('wx ready')
@@ -285,7 +285,7 @@
 			let desc = '2021.2.7日，豪庭大酒店不见不散！';
 			let link = window.location.href;
 			let imgUrl = 'https://te8te.cn/invite/share.jpg'
-			wx.updateAppMessageShareData({ 
+			wx.onMenuShareAppMessage({ 
 				title: title, // 分享标题
 				desc: desc, // 分享描述
 				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
@@ -294,7 +294,7 @@
 				// 设置成功
 				}
 			})
-			wx.updateTimelineShareData({ 
+			wx.onMenuShareTimeline({ 
 				title: title, // 分享标题
 				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 				imgUrl: imgUrl, // 分享图标
