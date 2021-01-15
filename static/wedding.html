@@ -254,7 +254,7 @@
 	axios.post('/wx/getSign', {
 		url: window.location.href
 	}).then(({data}) => {
-		console.log(data)
+		alert(JSON.stringify(data))
 		// scene.wxconfig = {
 		// 	"appId":"wx2f74425be8fcfd89",
 		// 	"nonceStr":"AmfBJc7GJZCadhF7",
