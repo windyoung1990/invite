@@ -277,10 +277,10 @@
 			debug: true,
 			nonceStr: data.nonceStr,
 			signature: data.signature,
-			jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline']
+			jsApiList: ['onMenuShareAppMessage']
 		});
 		wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
-			alert('wx ready')
+			alert('wx')
 			let title = '我们结婚啦！';
 			let desc = '2021.2.7日，豪庭大酒店不见不散！';
 			let link = window.location.href;
@@ -295,14 +295,14 @@
 				// 设置成功
 				}
 			})
-			wx.onMenuShareTimeline({ 
-				title: title, // 分享标题
-				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-				imgUrl: imgUrl, // 分享图标
-				success: function () {
-				// 设置成功
-				}
-			})
+			// wx.onMenuShareTimeline({ 
+			// 	title: title, // 分享标题
+			// 	link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+			// 	imgUrl: imgUrl, // 分享图标
+			// 	success: function () {
+			// 	// 设置成功
+			// 	}
+			// })
 		}); 
 
 
