@@ -253,7 +253,8 @@
 	<script type="text/javascript">
 	axios.post('/wx/getSign', {
 		url: window.location.href
-	}).then((res) => {
+	}).then(({data}) => {
+		console.log(data)
 		// scene.wxconfig = {
 		// 	"appId":"wx2f74425be8fcfd89",
 		// 	"nonceStr":"AmfBJc7GJZCadhF7",
@@ -261,25 +262,26 @@
 		// 	"url":"http:\/\/te8te.cn\/invite\/wedding.html",
 		// 	"signature":"e91934318fcd7349d0c60b42d03577cd7915bd82",
 		// 	"rawString":"jsapi_ticket=HoagFKDcsGMVCIY2vOjf9j67WIIaBRQWde9uYfaLpZMTh5zlx0ibPTazp7vy6DSh_F6_675dOo3hxrun1Ot5sw&noncestr=AmfBJc7GJZCadhF7&timestamp=1609489551&url=http:\/\/te8te.cn\/invite\/wedding.html"};
-		scene.wxconfig = {
-			"appId": res.appId,
-			"nonceStr": res.nonceStr,
-			"timestamp":res.timestamp,
-			"url": window.location.href,
-			"signature": res.signature,
-			// "rawString":"jsapi_ticket=HoagFKDcsGMVCIY2vOjf9j67WIIaBRQWde9uYfaLpZMTh5zlx0ibPTazp7vy6DSh_F6_675dOo3hxrun1Ot5sw&noncestr=AmfBJc7GJZCadhF7&timestamp=1609489551&url=http:\/\/te8te.cn\/invite\/wedding.html"
-		};
+		// scene.wxconfig = {
+		// 	"appId": res.appId,
+		// 	"nonceStr": res.nonceStr,
+		// 	"timestamp":res.timestamp,
+		// 	"url": window.location.href,
+		// 	"signature": res.signature,
+		// 	// "rawString":"jsapi_ticket=HoagFKDcsGMVCIY2vOjf9j67WIIaBRQWde9uYfaLpZMTh5zlx0ibPTazp7vy6DSh_F6_675dOo3hxrun1Ot5sw&noncestr=AmfBJc7GJZCadhF7&timestamp=1609489551&url=http:\/\/te8te.cn\/invite\/wedding.html"
+		// };
 		wx.config({
-			appId: res.appId,
-			timestamp: res.timestamp,
-			nonceStr: res.nonceStr,
-			signature: res.signature,
+			appId: data.appId,
+			timestamp: data.timestamp,
+			debug: true,
+			nonceStr: data.nonceStr,
+			signature: data.signature,
 			jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
 		});
 		wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
 			console.log('wx ready')
 			let title = '我们结婚啦！';
-			let des = '2021.2.7日，豪庭大酒店不见不散！';
+			let desc = '2021.2.7日，豪庭大酒店不见不散！';
 			let link = window.location.href;
 			let imgUrl = 'https://te8te.cn/invite/share.jpg'
 			wx.updateAppMessageShareData({ 
