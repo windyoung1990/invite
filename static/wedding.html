@@ -21,7 +21,8 @@
 	<!-- no cache -->
 	<link rel="stylesheet" href="https://staticimg.7192.com/wp_static/wp/css/main.css?t=0711">
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+	<!-- <script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script> -->
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 	<style type="text/css">
 		.loading {
 			background: none !important;
@@ -277,7 +278,7 @@
 			debug: true,
 			nonceStr: data.noncestr,
 			signature: data.signature,
-			jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+			jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
 		});
 		wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
 			// alert('wx')
@@ -289,7 +290,7 @@
 			let link = window.location.href;
 			let imgUrl = 'https://te8te.cn/invite/share.jpg'
 			// let imgUrl = 'https://staticimg.7192.com/images/def_thumb.jpg';
-			wx.updateAppMessageShareData({ 
+			wx.onMenuShareTimeline({ 
 				title: title, // 分享标题
 				desc: desc, // 分享描述
 				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
@@ -299,7 +300,7 @@
 					alert('succ')
 				}
 			})
-			wx.updateTimelineShareData({ 
+			wx.onMenuShareAppMessage({ 
 				title: title, // 分享标题
 				link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 				imgUrl: imgUrl, // 分享图标
