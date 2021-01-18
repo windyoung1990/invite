@@ -197,6 +197,9 @@
 </head>
 
 <body style="padding: 0" rel="912">
+	<div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
+		<img src="https://te8te.cn/invite/share.jpg" width='700'>
+	</div>
 	<div id="loading" class="loading" style="display: none">
 		<div id="loading-prev" class="loading-prev" style="display: none">
 			<div class="logo-bg">
@@ -255,7 +258,7 @@
 	axios.post('/wx/getSign', {
 		url: window.location.href
 	}).then(({data}) => {
-		alert(JSON.stringify(data))
+		// alert(JSON.stringify(data))
 		// scene.wxconfig = {
 		// 	"appId":"wx2f74425be8fcfd89",
 		// 	"nonceStr":"AmfBJc7GJZCadhF7",
@@ -275,7 +278,7 @@
 		wx.config({
 			appId: data.appId,
 			timestamp: data.timestamp,
-			debug: true,
+			// debug: true,
 			nonceStr: data.noncestr,
 			signature: data.signature,
 			jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
